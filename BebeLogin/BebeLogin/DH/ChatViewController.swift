@@ -49,9 +49,9 @@ class ChatViewController: UIViewController {
         
         
         // 채팅 거래 중인 아이템 이미지, 제목
-        let url = URL(string: share.imgUrl(receiveItemimage))
-        let data = try? Data(contentsOf: url!)
-        imgViewItem.image = UIImage(data: data!)
+//        let url = URL(string: share.imgUrl(receiveItemimage))
+//        let data = try? Data(contentsOf: url!)
+//        imgViewItem.image = UIImage(data: data!)
     
         lblItemTitle.text = receiveItemtitle
         
@@ -187,8 +187,8 @@ extension ChatViewController: ChatMessageSelectModelProtocol {
 
 // 후기 입력했었는지 체크해서 입력
 extension ChatViewController: ReviewInsertModelProtocol {
-    func itemDeownloaded(items: NSArray) {
-        var result = items
+    func itemDeownloaded(items: String) {
+        let result = items
         
         if result == "alreadyExists" {
             let resultAlert = UIAlertController(title: "안내", message: "이미 입력된 후기입니다.", preferredStyle: .alert)
