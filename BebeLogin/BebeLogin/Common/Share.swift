@@ -11,7 +11,7 @@ import Foundation
 struct Share {
     static var userEmail = ""
     static var userNickName = ""
-    static var ipaddress = "192.168.0.127:8080" //김민재
+    static var ipaddress = "127.0.0.1:8080" //김민재
     static var withdrawal = "" //김민재
     static var trueFalseOfPassword = "" //김민재
     
