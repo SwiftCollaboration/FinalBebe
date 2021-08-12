@@ -149,7 +149,7 @@ class ItemDetailBuyerViewController: UIViewController {
     @IBAction func btnChatAction(_ sender: UIButton) {
         let chatRoomCheckModel = ChatRoomCheckModel()
         chatRoomCheckModel.delegate = self
-        chatRoomCheckModel.chatRoomCheckItems(detailBuyer_user_email, Share.userCode, itemCode)
+        chatRoomCheckModel.chatRoomCheckItems(detailBuyer_user_email, Share.userEmail, itemCode)
     }
     // ================== 이도희 ==================
     // ================== 김민재 ==================
@@ -283,7 +283,7 @@ extension ItemDetailBuyerViewController: ChatRoomCheckModelProtocol {
         checkRoom = items
         
         let chatView = ChatViewController()
-        chatView.receiveItems(checkRoom, itemCode, detailBuyer_itemtitle, detailBuyer_itemimage, detailBuyer_usernickname, "sellerscore", detailBuyer_user_email, Share.userCode, detailBuyer_user_email)
+        chatView.receiveItems(checkRoom, itemCode, detailBuyer_itemtitle, detailBuyer_itemimage, detailBuyer_usernickname, "sellerscore", detailBuyer_user_email, Share.userEmail, detailBuyer_user_email)
     }
 }
 // ================== 이도희 ==================

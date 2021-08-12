@@ -7,11 +7,16 @@
 
 import Foundation
 
+protocol ReviewInsertModelProtocol {
+    func itemDeownloaded(items: String)
+}
+
 class ReviewInsertModel: NSObject {
+    var delegate: ReviewInsertModelProtocol!
     var urlPath = share.url("review.jsp")
     
-    func reviewInsertItems(_ itemcode: String, _ score: Int, _ scoreType: String, _ sellerEmail: String, _ buyerEmail: String, _ scoreEmail: String) -> Bool {
-        var result: Bool = true
+    func reviewInsertItems(_ itemcode: String, _ score: Int, _ scoreType: String, _ sellerEmail: String, _ buyerEmail: String, _ scoreEmail: String) {
+        
         let urlAdd = "?itemcode=\(itemcode)&score=\(score)&scoreType=\(scoreType)&sellerEmail=\(sellerEmail)&buyerEmail=\(buyerEmail)&scoreEmail=\(scoreEmail)"
         urlPath = urlPath + urlAdd
         
@@ -23,14 +28,35 @@ class ReviewInsertModel: NSObject {
         let task = defaultSession.dataTask(with: url) {(data, response, error) in
             if error != nil {
                 print("Failed to download data")
-                result = false
             }else {
-                print("Data is inserted")
-                result = true
+                print("Data is downloaded")
+                self.parseQuery(data!)
             }
         }
         task.resume()
-        return result
     }
     
+    func parseQuery(_ data: Data) {
+        var jsonResult = NSArray()
+        do {
+            jsonResult = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as! NSArray
+        }catch let error as NSError {
+            print(error)
+        }
+        
+        var jsonElement = NSDictionary()
+        var locations = ""
+        
+        for i in 0..<jsonResult.count {
+            jsonElement = jsonResult[i] as! NSDictionary
+            if let result = jsonElement["result"] as? String {
+                locations = result
+                
+                print("result : " + result)
+            }
+        }
+        DispatchQueue.main.async(execute: {() -> Void in
+            self.delegate.itemDeownloaded(items: locations)
+        })
+    }
 }

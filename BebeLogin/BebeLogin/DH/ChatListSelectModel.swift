@@ -19,7 +19,7 @@ class ChatListSelectModel: NSObject {
     
     func chatListSelectItems() {
         
-        urlPath = urlPath + "?email=\(Share.userCode)"
+        urlPath = urlPath + "?email=\(Share.userEmail)"
         
         print(urlPath)
         
