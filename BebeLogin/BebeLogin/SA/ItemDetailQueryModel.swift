@@ -53,6 +53,8 @@ class ItemDetailQueryModel {
         var jsonElement = NSDictionary() // (Key, Value) 값으로 저장하기 위한 Dictionary
         let locations = NSMutableArray() // ArrayList와 같음, 데이터 삽입&수정&삭제가 가능하도록 NSMutableArray로 설정
         
+        print("jsonElement -> locations")
+        
         for i in 0..<jsonResult.count{
             // json의 {} 의 값을 Data 1개로 취급한다
             jsonElement = jsonResult[i] as! NSDictionary // jsonResult를 NSDictionary로 변환 :: (Key, Value) 값으로 구성하기 위하여

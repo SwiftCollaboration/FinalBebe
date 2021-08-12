@@ -267,14 +267,15 @@ class ItemEditViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
             
             let resultAlert = UIAlertController(title: "완료", message: "수정이 되었습니다.", preferredStyle: .alert)
             let onAction = UIAlertAction(title: "OK", style: .default, handler: {ACTION in
-                    self.navigationController?.popViewController(animated: true)
+                    self.changeSellerViewData()
                     self.dismiss(animated: true, completion: nil) // 이전 화면으로 이동
+                    self.navigationController?.popViewController(animated: true)
+                    
                 })
             resultAlert.addAction(onAction) // 실행할 액션을 추가
             // Alert 띄우기
             present(resultAlert, animated: true, completion: nil)
             
-            changeSellerViewData()
             
         }else{
             // DB에 입력
@@ -283,14 +284,16 @@ class ItemEditViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
             
             let resultAlert = UIAlertController(title: "완료", message: "수정이 되었습니다.", preferredStyle: .alert)
             let onAction = UIAlertAction(title: "OK", style: .default, handler: {ACTION in
-                    self.navigationController?.popViewController(animated: true)
+                    self.changeSellerViewData_image() // 판매자 디테일뷰의 Data 변경
                     self.dismiss(animated: true, completion: nil) // 이전 화면으로 이동
+                    self.navigationController?.popViewController(animated: true)
+                    
                 })
             resultAlert.addAction(onAction) // 실행할 액션을 추가
             // Alert 띄우기
             present(resultAlert, animated: true, completion: nil)
             
-            changeSellerViewData_image() // 판매자 디테일뷰의 Data 변경
+            
             }
     }// btnItemEditAction
     

@@ -96,17 +96,15 @@ class ItemDetailSellerViewController: UIViewController {
     
     // *** 위에 실행했던 View가 닫히고 다시 띄워질 때 ***
     override func viewWillAppear(_ animated: Bool) {
-        // 변경된 Data 적용
+        
+        lblNickname.text = "\(detailSeller_usernickname)\t\t"
+        lblTitle.text = "  \(detailSeller_itemtitle)"
+        lblCategory.text = "  \(detailSeller_category)"
+        lblUseAge.text = "  \(detailSeller_useage)"
+        lblLocation.text = "\(detailSeller_address)"
         
         
-//        lblNickname.text = "\(detailSeller_usernickname)\t\t"
-//        lblTitle.text = "  \(detailSeller_itemtitle)"
-//        lblCategory.text = "  \(detailSeller_category)"
-//        lblUseAge.text = "  \(detailSeller_useage)"
-//        lblLocation.text = "\(detailSeller_address)"
-        
-        
-       // tagCollectionView.reloadData()
+        tagCollectionView.reloadData()
     }
     
     // QueryModel로 불러온 데이터를 전역변수에 넣기
@@ -129,9 +127,9 @@ class ItemDetailSellerViewController: UIViewController {
     }
     
     
-//    // 거래 상태 변경
-//    @IBAction func btnTradeStatusAction(_ sender: UIButton) {
-//    }
+    // 거래 상태 변경
+    @IBAction func btnTradeStatusAction(_ sender: UIButton) {
+    }
     
     
     // 수정/삭제 버튼 액션
