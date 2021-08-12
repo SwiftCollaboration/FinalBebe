@@ -60,6 +60,17 @@ class MJViewController: UIViewController {
         }
     }
     
+    
+    
+    // ============== 이도희 ==============
+    // mypage -> chat
+    @IBAction func btnChat(_ sender: UIButton) {
+        tabBarController?.selectedIndex = 3
+    }
+    // ============== 이도희 ==============
+    
+    
+    
     //_______func__________________________________________________________
 //
 //

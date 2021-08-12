@@ -91,7 +91,7 @@ class ChatViewController: UIViewController {
         
         if tfMessage.text?.count != 0 {
             let chatInsertModel = ChatInsertModel()
-            let result = chatInsertModel.insertItems(message!, Share.userCode, receiveRoomcode)
+            let result = chatInsertModel.insertItems(message!, Share.userEmail, receiveRoomcode)
             
             if result {
                 tfMessage.text?.removeAll()
@@ -140,23 +140,8 @@ class ChatViewController: UIViewController {
     
     func insertReview(_ reviewScore: Int) {
         let reviewInsertModel = ReviewInsertModel()
-        let result = reviewInsertModel.reviewInsertItems(receiveItemcode, reviewScore, receiveScoreType, receiveSellerEmail, receiveBuyerEmail, receiveScoreEmail)
-        
-        if result {
-            let resultAlert = UIAlertController(title: "완료", message: "후기가 입력 되었습니다.", preferredStyle: .alert)
-            let onAction = UIAlertAction(title: "OK", style: .default, handler: { ACTION in
-                self.navigationController?.popViewController(animated: true)
-            })
-            
-            resultAlert.addAction(onAction)
-            present(resultAlert, animated: true, completion: nil)
-        }else {
-            let resultAlert = UIAlertController(title: "실패", message: "에러가 발생 되었습니다", preferredStyle: .alert)
-            let onAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-            
-            resultAlert.addAction(onAction)
-            present(resultAlert, animated: true, completion: nil)
-        }
+        reviewInsertModel.delegate = self
+        reviewInsertModel.reviewInsertItems(receiveItemcode, reviewScore, receiveScoreType, receiveSellerEmail, receiveBuyerEmail, receiveScoreEmail)
     }
     
     /*
@@ -200,6 +185,29 @@ extension ChatViewController: ChatMessageSelectModelProtocol {
     }
 }
 
+// 후기 입력했었는지 체크해서 입력
+extension ChatViewController: ReviewInsertModelProtocol {
+    func itemDeownloaded(items: NSArray) {
+        var result = items
+        
+        if result == "alreadyExists" {
+            let resultAlert = UIAlertController(title: "안내", message: "이미 입력된 후기입니다.", preferredStyle: .alert)
+            let onAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            
+            resultAlert.addAction(onAction)
+            present(resultAlert, animated: true, completion: nil)
+        }else {
+            let resultAlert = UIAlertController(title: "완료", message: "후기가 입력 되었습니다.", preferredStyle: .alert)
+            let onAction = UIAlertAction(title: "OK", style: .default, handler: { ACTION in
+                self.navigationController?.popViewController(animated: true)
+            })
+            
+            resultAlert.addAction(onAction)
+            present(resultAlert, animated: true, completion: nil)
+        }
+    }
+}
+
 extension ChatViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     // cell의 갯수
@@ -214,7 +222,7 @@ extension ChatViewController: UICollectionViewDataSource, UICollectionViewDelega
         let item: ChatMessageDBModel = chatMessageItem[indexPath.row] as! ChatMessageDBModel
         
         // 내 채팅인 경우, 상대 채팅인 경우에 따른 설정
-        if item.user_email == Share.userCode {
+        if item.user_email == Share.userEmail {
             // 배경색 설정
             cell.cvMessage.backgroundColor = nil
 //            cell.cvMessage.backgroundColor = UIColor(named: "SubColor")
@@ -238,8 +246,6 @@ extension ChatViewController: UICollectionViewDataSource, UICollectionViewDelega
         if (item.message?.count)! > 0 {
             cell.containerViewWidthAnchor?.constant = measuredFrameHeightForEachMessage(item.message!).width
         }
-        
-//        cvChat.scrollToItem(at: IndexPath(row: chatMessageItem.count - 1, section: chatMessageItem.count - 1), at: .bottom, animated: true)
         
         return cell
     }
