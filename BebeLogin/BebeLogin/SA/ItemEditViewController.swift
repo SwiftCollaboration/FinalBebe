@@ -190,7 +190,7 @@ class ItemEditViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     @IBAction func btnAgeAction(_ sender: UIButton) {
         let selectAlert = UIAlertController(title: "개월 수 선택", message: "개월 수를 선택하세요!\n\n\n\n\n\n", preferredStyle: .alert)
         // pickerView 추가
-        let pickerView = UIPickerView(frame: CGRect(x: 10, y: 50, width: 250, height: 150))
+        let pickerView = UIPickerView(frame: CGRect(x: 10, y: 50, width: 250, height: 100))
         pickerView.tag = 1
         pickerView.delegate = self
         pickerView.dataSource = self
@@ -216,7 +216,7 @@ class ItemEditViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     @IBAction func btnLocationAction(_ sender: UIButton) {
         let selectAlert = UIAlertController(title: "거래 희망 지역 선택", message: "거래 희망 지역을 선택하세요!\n\n\n\n\n\n", preferredStyle: .alert)
         // pickerView 추가
-        let pickerView = UIPickerView(frame: CGRect(x: 10, y: 50, width: 250, height: 150))
+        let pickerView = UIPickerView(frame: CGRect(x: 10, y: 50, width: 250, height: 100))
         pickerView.tag = 2
         pickerView.delegate = self
         pickerView.dataSource = self

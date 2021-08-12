@@ -102,6 +102,7 @@ class ItemDetailSellerViewController: UIViewController {
         lblCategory.text = "  \(detailSeller_category)"
         lblUseAge.text = "  \(detailSeller_useage)"
         lblLocation.text = "\(detailSeller_address)"
+        self.navigationItem.title = detailSeller_itemtitle
         
         
         tagCollectionView.reloadData()
@@ -282,6 +283,7 @@ extension ItemDetailSellerViewController: ItemDetailQueryModelProtocol{
         lblCategoryAgePrice.text = "\(itemPrice)원\t\t"
         tvContent.text = detailSeller_itemcontent
         lblLocation.text = "\(detailSeller_address)"
+        self.navigationItem.title = detailSeller_itemtitle
         
         // 태그 데이터 구성
         detailSeller_tagArray = detailSeller_tag.components(separatedBy: ",")

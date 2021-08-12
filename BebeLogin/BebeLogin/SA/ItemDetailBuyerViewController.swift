@@ -106,6 +106,7 @@ class ItemDetailBuyerViewController: UIViewController {
     
     // 화면이 내려가있다가 다시 팝업될 때 실행
     override func viewWillAppear(_ animated: Bool) {
+        self.navigationItem.title = detailBuyer_itemtitle
 //        let queryModel = ItemDetailQueryModel() // 생성자 생성
 //
 //        // extension으로 정의한 것을 실행
@@ -266,6 +267,8 @@ extension ItemDetailBuyerViewController: ItemDetailQueryModelProtocol{
         lblCategoryAgePrice.text = "\(itemPrice)원\t\t"
         tvContent.text = detailBuyer_itemcontent
         lblLocation.text = "\(detailBuyer_address)"
+        
+        self.navigationItem.title = detailBuyer_itemtitle
         
         
         // 태그 데이터 구성
