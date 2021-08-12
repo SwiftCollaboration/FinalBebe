@@ -32,7 +32,7 @@ class SearchResultViewController: UITableViewController {
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
       
-        
+        searchResultTableView.rowHeight = 150
         let searchModel = SearchModel()              // * * * * * * * * *
         searchModel.delegate = self                  // *   DB 불러오기   *
         searchModel.downloadItems(subUrl: searchWord)// * * * * * * * * *
@@ -75,9 +75,13 @@ class SearchResultViewController: UITableViewController {
         // Configure the cell...
         let item: SearchDBModel = feedItem[indexPath.row] as! SearchDBModel
         
+        let url = URL(string: "http://localhost:8080/bebeProject/image/\(item.itemimage ?? "basicImage.png")")
+        let data = try? Data(contentsOf: url!)
+        cell.searchImageView.image = UIImage(data: data!)
+        
+        
         // Cell Customizing
         cell.cornerRadius = 15
-        cell.searchImageView.image = UIImage(named: "\(item.itemimage ?? "basicImage.png")")
         cell.lblSearchTitle.text = item.itemtitle                   // 제목 : itemtitle
         cell.lblSearchDate.text = item.uploaddate                   // 판매등록날짜 : uploaddate
         cell.btnSearchUseage.setTitle(item.useage, for: .normal)    // Button : useage
