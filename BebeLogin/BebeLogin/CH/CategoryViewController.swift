@@ -7,7 +7,7 @@
 
 import UIKit
 
-var CategoryList = ["","의류","침구","이유식","목욕","위생","스킨케어","외출용품","완구/잡화"]
+var CategoryList = ["","의류","침구","이유식","목욕용품","위생용품","스킨케어","외출용품","완구"]
 var CategoryImage: [UIImage] = [UIImage(named: "All.png")!,UIImage(named: "cloth.png")!,UIImage(named: "bed.png")!,UIImage(named: "food.png")!,UIImage(named: "bath.png")!,UIImage(named: "item.png")!,UIImage(named: "skincare.png")!,UIImage(named: "outside.png")!,UIImage(named: "toy.png")!]
 var CategoryImage2: [UIImage] = [UIImage(named: "All_2.png")!,UIImage(named: "cloth_2.png")!,UIImage(named: "bed_2.png")!,UIImage(named: "food_2.png")!,UIImage(named: "bath_2.png")!,UIImage(named: "item_2.png")!,UIImage(named: "skincare_2.png")!,UIImage(named: "outside_2.png")!,UIImage(named: "toy_2.png")!]
 
